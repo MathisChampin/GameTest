@@ -3,6 +3,8 @@
 Game::Game(): window(sf::VideoMode(1920, 1080), "Green City"), tileMap(10, 10, 64.f)
 {
     window.setFramerateLimit(60);
+    if (!text.loadFont("assets/fonts/Oswald-VariableFont_wght.ttf"))
+        throw std::runtime_error("Erreur chargement police HUD !");
 }
 
 Game::~Game() {}
@@ -113,6 +115,7 @@ void Game::updateResources()
         resourceManager.addWater(building.getWaterProduction());
         resourceManager.consumeWater(building.getWaterConsumption());
     }
+    text.update(resourceManager, currentBuildingType, window);
 }
 
 void Game::update()
@@ -125,5 +128,6 @@ void Game::render()
 {
     window.clear(sf::Color::Black);
     tileMap.draw(window);
+    text.draw(window);
     window.display();
 }

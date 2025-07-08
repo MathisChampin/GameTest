@@ -5,6 +5,7 @@
     #include "../graphics/TileMap.hpp"
     #include "../graphics/Building.hpp"
     #include "ResourceManager.hpp"
+    #include "../graphics/Text.hpp"
 
 class Game {
     public:
@@ -34,6 +35,7 @@ class Game {
         TileMap tileMap;
         BuildingType currentBuildingType = BuildingType::House;
         ResourceManager resourceManager;
+        Text text;
 };
 
 #endif // GAME_HPP_

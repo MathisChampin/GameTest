@@ -96,12 +96,29 @@ void Game::handleBuildingDeletion()
     tileMap.removeBuilding(worldPos);
 }
 
-void Game::update()
+void Game::updateHoverTile()
 {
     sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
     sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
-
     tileMap.updateHover(worldPos);
+}
+
+void Game::updateResources()
+{
+    resourceManager.reset();
+
+    for (const auto &building : tileMap.getBuildings()) {
+        resourceManager.addElectricity(building.getElectricityProduction());
+        resourceManager.consumeElectricity(building.getElectricityConsumption());
+        resourceManager.addWater(building.getWaterProduction());
+        resourceManager.consumeWater(building.getWaterConsumption());
+    }
+}
+
+void Game::update()
+{
+    updateHoverTile();
+    updateResources();
 }
 
 void Game::render()

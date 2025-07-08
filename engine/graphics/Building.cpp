@@ -37,3 +37,29 @@ bool Building::contains(sf::Vector2f point) const
 {
     return shape.getGlobalBounds().contains(point);
 }
+
+int Building::getElectricityProduction() const
+{
+    if (type == BuildingType::SolarPanel)
+        return 2;
+    return 0;
+}
+
+int Building::getElectricityConsumption() const
+{
+    if (type == BuildingType::House)
+        return 1;
+    return 0;
+}
+
+int Building::getWaterProduction() const
+{
+    if (type == BuildingType::WaterTank)
+        return 1;
+    return 0;
+}
+
+int Building::getWaterConsumption() const
+{
+    return 0;
+}

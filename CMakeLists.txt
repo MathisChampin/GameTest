@@ -3,14 +3,14 @@ project(GreenCity)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Inclure tous les fichiers sources
+# Récupère les fichiers source
 file(GLOB_RECURSE SRC
     "engine/*.cpp"
     "game/*.cpp"
 )
 
-add_executable(GreenCityWars ${SRC})
+add_executable(GreenCity ${SRC})
 
 # Lier SFML
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
-target_link_libraries(GreenCityWars sfml-graphics sfml-window sfml-system)
+target_link_libraries(GreenCity sfml-graphics sfml-window sfml-system)

@@ -18,6 +18,31 @@ add_executable(GreenCity
     ${GAME_SRC}
 )
 
+file(GLOB_RECURSE TEST_SRC tests/*.cpp)
+
+add_executable(Tests 
+    ${ENGINE_SRC}
+    ${GAME_SRC}
+    ${TEST_SRC}
+)
+
+target_include_directories(Tests PRIVATE
+    /opt/homebrew/include
+    ${ENGINE_DIR}
+    ${GAME_DIR}
+)
+
+target_link_directories(Tests PRIVATE
+    /opt/homebrew/lib
+)
+
+target_link_libraries(Tests
+    criterion
+    sfml-graphics
+    sfml-window
+    sfml-system
+)
+
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 target_link_libraries(GreenCity
     sfml-graphics

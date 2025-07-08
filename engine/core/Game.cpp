@@ -3,6 +3,8 @@
 Game::Game(): window(sf::VideoMode(1920, 1080), "Green City"), tileMap(10, 10, 64.f)
 {
     window.setFramerateLimit(60);
+    if (!text.loadFont("assets/fonts/Oswald-VariableFont_wght.ttf"))
+        throw std::runtime_error("Erreur chargement police HUD !");
 }
 
 Game::~Game() {}
@@ -96,17 +98,36 @@ void Game::handleBuildingDeletion()
     tileMap.removeBuilding(worldPos);
 }
 
-void Game::update()
+void Game::updateHoverTile()
 {
     sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
     sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
-
     tileMap.updateHover(worldPos);
+}
+
+void Game::updateResources()
+{
+    resourceManager.reset();
+
+    for (const auto &building : tileMap.getBuildings()) {
+        resourceManager.addElectricity(building.getElectricityProduction());
+        resourceManager.consumeElectricity(building.getElectricityConsumption());
+        resourceManager.addWater(building.getWaterProduction());
+        resourceManager.consumeWater(building.getWaterConsumption());
+    }
+    text.update(resourceManager, currentBuildingType, window);
+}
+
+void Game::update()
+{
+    updateHoverTile();
+    updateResources();
 }
 
 void Game::render()
 {
     window.clear(sf::Color::Black);
     tileMap.draw(window);
+    text.draw(window);
     window.display();
 }

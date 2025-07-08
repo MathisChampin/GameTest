@@ -29,3 +29,5 @@ target_include_directories(GreenCity PRIVATE
     ${ENGINE_DIR}
     ${GAME_DIR}
 )
+
+configure_file(assets/fonts/Oswald-VariableFont_wght.ttf assets/fonts/Oswald-VariableFont_wght.ttf COPYONLY)

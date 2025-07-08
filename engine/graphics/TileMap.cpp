@@ -77,3 +77,8 @@ void TileMap::removeBuilding(sf::Vector2f mousePos)
         }
     }
 }
+
+const std::vector<Building> &TileMap::getBuildings() const
+{
+    return buildings;
+}

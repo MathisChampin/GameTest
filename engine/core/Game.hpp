@@ -4,6 +4,8 @@
     #include <SFML/Graphics.hpp>
     #include "../graphics/TileMap.hpp"
     #include "../graphics/Building.hpp"
+    #include "ResourceManager.hpp"
+    #include "../graphics/Text.hpp"
 
 class Game {
     public:
@@ -12,9 +14,12 @@ class Game {
     
         void run();
         void processEvents();
-        void update();
         void render();
-
+        
+        void updateHoverTile();
+        void updateResources();
+        void update();
+    
         bool isEscapePressed(const sf::Event &event) const;
         bool isLeftClick(const sf::Event &event) const;
         bool isPlaceBuilding(const sf::Event &event) const; 
@@ -29,6 +34,8 @@ class Game {
         sf::RenderWindow window;
         TileMap tileMap;
         BuildingType currentBuildingType = BuildingType::House;
+        ResourceManager resourceManager;
+        Text text;
 };
 
 #endif // GAME_HPP_

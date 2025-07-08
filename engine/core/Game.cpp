@@ -28,6 +28,10 @@ void Game::processEvents()
             sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
             tileMap.handleClick(worldPos);
         }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
+            sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+            tileMap.placeBuilding(worldPos);
+        }
     }
 }
 

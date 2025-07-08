@@ -46,7 +46,7 @@ void TileMap::handleClick(sf::Vector2f mousePos)
     }
 }
 
-void TileMap::placeBuilding(sf::Vector2f mousePos)
+void TileMap::placeBuilding(sf::Vector2f mousePos, BuildingType type)
 {
     bool occupied = false;
 
@@ -61,7 +61,7 @@ void TileMap::placeBuilding(sf::Vector2f mousePos)
                     }
                 }
                 if (!occupied) {
-                    buildings.emplace_back(tile.getPosition().x, tile.getPosition().y, tileSize, sf::Color::Blue);
+                    buildings.emplace_back(tile.getPosition().x, tile.getPosition().y, tileSize, type);
                 }
             }
         }

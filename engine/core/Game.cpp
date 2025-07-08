@@ -16,22 +16,73 @@ void Game::run()
     }
 }
 
-void Game::processEvents()
-{
+void Game::processEvents() {
     sf::Event event;
 
-    while (window.pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed || isEscapePressed(event))
             window.close();
-        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-            sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-            tileMap.handleClick(worldPos);
-        }
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
-            sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-            tileMap.placeBuilding(worldPos);
-        }
+
+        if (isLeftClick(event))
+            handleTileSelection();
+
+        if (isPlaceBuilding(event))
+            handleBuildingPlacement();
+
+        if (isChangeTypeKey(event))
+            handleTypeSwitch(event);
+    }
+}
+
+bool Game::isEscapePressed(const sf::Event &event) const 
+{
+    return event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape;
+}
+
+bool Game::isLeftClick(const sf::Event &event) const 
+{
+    return event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left;
+}
+
+bool Game::isPlaceBuilding(const sf::Event &event) const 
+{
+    return event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B;
+}
+
+bool Game::isChangeTypeKey(const sf::Event &event) const 
+{
+    return event.type == sf::Event::KeyPressed &&
+           (event.key.code == sf::Keyboard::A ||
+            event.key.code == sf::Keyboard::Z ||
+            event.key.code == sf::Keyboard::E);
+}
+
+void Game::handleTileSelection() 
+{
+    sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+    tileMap.handleClick(worldPos);
+}
+
+void Game::handleBuildingPlacement() 
+{
+    sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+    tileMap.placeBuilding(worldPos, currentBuildingType);
+}
+
+void Game::handleTypeSwitch(const sf::Event& event)
+{
+    switch (event.key.code) {
+        case sf::Keyboard::A:
+            currentBuildingType = BuildingType::House;
+            break;
+        case sf::Keyboard::Z:
+            currentBuildingType = BuildingType::SolarPanel;
+            break;
+        case sf::Keyboard::E:
+            currentBuildingType = BuildingType::WaterTank;
+            break;
+        default:
+            break;
     }
 }
 

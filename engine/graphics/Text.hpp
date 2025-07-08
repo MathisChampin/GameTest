@@ -12,13 +12,12 @@ class Text {
         bool loadFont(const std::string& path);
         void update(const ResourceManager& rm, BuildingType selectedType, const sf::RenderWindow& window);
         void draw(sf::RenderWindow& window) const;
+        std::string buildingTypeToString(BuildingType type) const;
 
     private:
         sf::Font font;
         sf::Text resourceText;
         sf::Text selectedTypeText;
-
-        std::string buildingTypeToString(BuildingType type) const;
 };
 
 #endif // TEXT_HPP_

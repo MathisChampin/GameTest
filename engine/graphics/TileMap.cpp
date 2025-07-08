@@ -25,9 +25,22 @@ void TileMap::updateHover(sf::Vector2f mousePos)
 {
     for (auto &tile : tiles) {
         if (tile.contains(mousePos)) {
-            tile.setColor(sf::Color::Green);
+            if (!tile.isSelected()) {
+                tile.setColor(sf::Color::Green);
+            }
         } else {
-            tile.resetColor();
+            if (!tile.isSelected()) {
+                tile.resetColor();
+            }
+        }
+    }
+}
+
+void TileMap::handleClick(sf::Vector2f mousePos)
+{
+    for (auto &tile : tiles) {
+        if (tile.contains(mousePos)) {
+            tile.select();
         }
     }
 }

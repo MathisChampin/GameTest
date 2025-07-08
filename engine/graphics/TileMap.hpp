@@ -10,6 +10,7 @@ class TileMap {
 
         void draw(sf::RenderWindow& window);
         void updateHover(sf::Vector2f mousePos);
+        void handleClick(sf::Vector2f mousePos);
 
     private:
         std::vector<Tile> tiles;

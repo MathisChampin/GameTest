@@ -22,10 +22,12 @@ void Game::processEvents()
 
     while (window.pollEvent(event))
     {
-        if (event.type == sf::Event::Closed)
+        if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
             window.close();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-            window.close();
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+            sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+            tileMap.handleClick(worldPos);
+        }
     }
 }
 

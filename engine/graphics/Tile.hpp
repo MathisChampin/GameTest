@@ -12,6 +12,8 @@ class Tile {
         sf::Vector2f getPosition() const;
         bool contains(sf::Vector2f point) const;
         void resetColor();
+        bool isSelected() const;
+        void select();
 
     private:
         sf::RectangleShape shape;

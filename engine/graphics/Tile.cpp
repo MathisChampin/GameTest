@@ -33,3 +33,13 @@ void Tile::resetColor()
 {
     shape.setFillColor(defaultColor);
 }
+
+bool Tile::isSelected() const
+{
+    return shape.getFillColor() == sf::Color::Red;
+}
+
+void Tile::select()
+{
+    shape.setFillColor(sf::Color::Red);
+}

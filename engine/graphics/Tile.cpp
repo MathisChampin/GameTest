@@ -23,3 +23,23 @@ sf::Vector2f Tile::getPosition() const
 {
     return shape.getPosition();
 }
+
+bool Tile::contains(sf::Vector2f point) const
+{
+    return shape.getGlobalBounds().contains(point);
+}
+
+void Tile::resetColor()
+{
+    shape.setFillColor(defaultColor);
+}
+
+bool Tile::isSelected() const
+{
+    return shape.getFillColor() == sf::Color::Red;
+}
+
+void Tile::select()
+{
+    shape.setFillColor(sf::Color::Red);
+}

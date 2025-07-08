@@ -20,3 +20,27 @@ void TileMap::draw(sf::RenderWindow &window)
         tile.draw(window);
     }
 }
+
+void TileMap::updateHover(sf::Vector2f mousePos)
+{
+    for (auto &tile : tiles) {
+        if (tile.contains(mousePos)) {
+            if (!tile.isSelected()) {
+                tile.setColor(sf::Color::Green);
+            }
+        } else {
+            if (!tile.isSelected()) {
+                tile.resetColor();
+            }
+        }
+    }
+}
+
+void TileMap::handleClick(sf::Vector2f mousePos)
+{
+    for (auto &tile : tiles) {
+        if (tile.contains(mousePos)) {
+            tile.select();
+        }
+    }
+}

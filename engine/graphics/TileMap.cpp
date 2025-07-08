@@ -67,3 +67,13 @@ void TileMap::placeBuilding(sf::Vector2f mousePos, BuildingType type)
         }
     }
 }
+
+void TileMap::removeBuilding(sf::Vector2f mousePos)
+{
+    for (auto it = buildings.begin(); it != buildings.end(); ++it) {
+        if (it->contains(mousePos)) {
+            buildings.erase(it);
+            break;
+        }
+    }
+}

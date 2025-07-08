@@ -32,3 +32,8 @@ BuildingType Building::getType() const
 {
     return type;
 }
+
+bool Building::contains(sf::Vector2f point) const
+{
+    return shape.getGlobalBounds().contains(point);
+}

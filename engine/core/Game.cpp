@@ -22,15 +22,14 @@ void Game::processEvents() {
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed || isEscapePressed(event))
             window.close();
-
         if (isLeftClick(event))
             handleTileSelection();
-
         if (isPlaceBuilding(event))
             handleBuildingPlacement();
-
         if (isChangeTypeKey(event))
             handleTypeSwitch(event);
+        if (isRightClick(event))
+            handleBuildingDeletion();
     }
 }
 
@@ -84,6 +83,17 @@ void Game::handleTypeSwitch(const sf::Event& event)
         default:
             break;
     }
+}
+
+bool Game::isRightClick(const sf::Event& event) const
+{
+    return event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right;
+}
+
+void Game::handleBuildingDeletion()
+{
+    sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+    tileMap.removeBuilding(worldPos);
 }
 
 void Game::update()

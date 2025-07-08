@@ -16,6 +16,7 @@ class Building {
         void draw(sf::RenderWindow& window) const;
         sf::Vector2f getPosition() const;
         BuildingType getType() const;
+        bool contains(sf::Vector2f point) const;
 
     private:
         sf::RectangleShape shape;

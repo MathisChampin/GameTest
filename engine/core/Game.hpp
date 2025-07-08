@@ -22,6 +22,8 @@ class Game {
         void handleTileSelection();
         void handleBuildingPlacement();
         void handleTypeSwitch(const sf::Event& event);
+        bool isRightClick(const sf::Event& event) const;
+        void handleBuildingDeletion();
 
     private:
         sf::RenderWindow window;

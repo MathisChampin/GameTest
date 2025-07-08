@@ -13,6 +13,7 @@ class TileMap {
         void updateHover(sf::Vector2f mousePos);
         void handleClick(sf::Vector2f mousePos);
         void placeBuilding(sf::Vector2f mousePos, BuildingType type);
+        void removeBuilding(sf::Vector2f mousePos);
 
     private:
         std::vector<Tile> tiles;

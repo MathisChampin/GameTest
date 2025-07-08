@@ -10,9 +10,12 @@ class Tile {
         void draw(sf::RenderWindow& window);
         void setColor(sf::Color color);
         sf::Vector2f getPosition() const;
+        bool contains(sf::Vector2f point) const;
+        void resetColor();
 
     private:
         sf::RectangleShape shape;
+        sf::Color defaultColor = sf::Color::White;
 };
 
 #endif // TILE_HPP_

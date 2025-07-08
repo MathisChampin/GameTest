@@ -20,3 +20,14 @@ void TileMap::draw(sf::RenderWindow &window)
         tile.draw(window);
     }
 }
+
+void TileMap::updateHover(sf::Vector2f mousePos)
+{
+    for (auto &tile : tiles) {
+        if (tile.contains(mousePos)) {
+            tile.setColor(sf::Color::Green);
+        } else {
+            tile.resetColor();
+        }
+    }
+}

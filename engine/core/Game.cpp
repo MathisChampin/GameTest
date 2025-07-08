@@ -29,7 +29,13 @@ void Game::processEvents()
     }
 }
 
-void Game::update() {}
+void Game::update()
+{
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+
+    tileMap.updateHover(worldPos);
+}
 
 void Game::render()
 {

@@ -7,7 +7,9 @@
 class TileMap {
     public:
         TileMap(int width, int height, float tileSize);
+
         void draw(sf::RenderWindow& window);
+        void updateHover(sf::Vector2f mousePos);
 
     private:
         std::vector<Tile> tiles;

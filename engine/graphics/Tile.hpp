@@ -14,6 +14,7 @@ class Tile {
         void resetColor();
         bool isSelected() const;
         void select();
+        void reset();
 
     private:
         sf::RectangleShape shape;

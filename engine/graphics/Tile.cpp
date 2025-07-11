@@ -43,3 +43,8 @@ void Tile::select()
 {
     shape.setFillColor(sf::Color::Red);
 }
+
+void Tile::reset()
+{
+    shape.setFillColor(defaultColor);
+}

@@ -15,7 +15,8 @@ class Game {
         void run();
         void processEvents();
         void render();
-        
+        void reset();
+
         void updateHoverTile();
         void updateResources();
         void update();
@@ -24,6 +25,8 @@ class Game {
         bool isLeftClick(const sf::Event &event) const;
         bool isPlaceBuilding(const sf::Event &event) const; 
         bool isChangeTypeKey(const sf::Event &event) const;
+        bool isResetClick(const sf::Event &event) const;
+        void handleResetClick();
         void handleTileSelection();
         void handleBuildingPlacement();
         void handleTypeSwitch(const sf::Event& event);

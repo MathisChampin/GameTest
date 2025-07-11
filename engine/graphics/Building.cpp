@@ -63,3 +63,9 @@ int Building::getWaterConsumption() const
 {
     return 0;
 }
+
+void Building::clear()
+{
+    shape.setFillColor(sf::Color::White);
+    type = BuildingType::House;
+}

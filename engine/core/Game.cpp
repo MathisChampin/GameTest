@@ -32,6 +32,8 @@ void Game::processEvents() {
             handleTypeSwitch(event);
         if (isRightClick(event))
             handleBuildingDeletion();
+        if (isResetClick(event))
+            handleResetClick();
     }
 }
 
@@ -47,15 +49,26 @@ bool Game::isLeftClick(const sf::Event &event) const
 
 bool Game::isPlaceBuilding(const sf::Event &event) const 
 {
-    return event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B;
+    return event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space;
 }
+
+bool Game::isResetClick(const sf::Event &event) const 
+{
+    return event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::R;
+}
+
 
 bool Game::isChangeTypeKey(const sf::Event &event) const 
 {
     return event.type == sf::Event::KeyPressed &&
-           (event.key.code == sf::Keyboard::A ||
-            event.key.code == sf::Keyboard::Z ||
-            event.key.code == sf::Keyboard::E);
+    (event.key.code == sf::Keyboard::A ||
+        event.key.code == sf::Keyboard::Z ||
+        event.key.code == sf::Keyboard::E);
+}
+    
+void Game::handleResetClick() 
+{
+    reset();
 }
 
 void Game::handleTileSelection() 
@@ -130,4 +143,11 @@ void Game::render()
     tileMap.draw(window);
     text.draw(window);
     window.display();
+}
+
+void Game::reset()
+{
+    tileMap.reset();
+    resourceManager.reset();
+    currentBuildingType = BuildingType::House;
 }

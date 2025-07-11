@@ -82,3 +82,11 @@ const std::vector<Building> &TileMap::getBuildings() const
 {
     return buildings;
 }
+
+void TileMap::reset()
+{
+    for (auto &tile : tiles) {
+        tile.reset();
+    }
+    buildings.clear();
+}

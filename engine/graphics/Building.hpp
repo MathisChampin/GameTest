@@ -22,7 +22,8 @@ class Building {
         int getElectricityConsumption() const;
         int getWaterProduction() const;
         int getWaterConsumption() const;
-    
+        void clear();
+
     private:
         sf::RectangleShape shape;
         BuildingType type;

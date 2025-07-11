@@ -14,6 +14,8 @@ class TileMap {
         void handleClick(sf::Vector2f mousePos);
         void placeBuilding(sf::Vector2f mousePos, BuildingType type);
         void removeBuilding(sf::Vector2f mousePos);
+        void reset();
+
         const std::vector<Building> &getBuildings() const;
 
     private:

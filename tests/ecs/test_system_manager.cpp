@@ -1,5 +1,5 @@
 #include <criterion/criterion.h>
-#include "../engine/ecs/SystemManager.hpp"
+#include "../../engine/ecs/SystemManager.hpp"
 
 struct TestSystem : public ISystem {};
 

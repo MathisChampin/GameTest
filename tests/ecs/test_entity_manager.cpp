@@ -1,5 +1,5 @@
 #include <criterion/criterion.h>
-#include "../engine/ecs/EntityManager.hpp"
+#include "../../engine/ecs/EntityManager.hpp"
 
 Test(EntityManager, CreateAndDestroyEntity) {
     EntityManager em;

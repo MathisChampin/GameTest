@@ -1,5 +1,5 @@
 #include <criterion/criterion.h>
-#include "../engine/ecs/ComponentManager.hpp"
+#include "../../engine/ecs/ComponentManager.hpp"
 
 struct TestComponent {
     int value;

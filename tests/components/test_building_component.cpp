@@ -3,8 +3,8 @@
 
 Test(BuildingComponent, DefaultIsHouse) {
     BuildingComponent bc;
-    cr_assert_eq(bc.type, BuildingType::House);
-    cr_assert_eq(bc.electricityConsumption, 1);
+    cr_assert_eq(bc.type, BuildingType::Unknown);
+    cr_assert_eq(bc.electricityConsumption, 0);
     cr_assert_eq(bc.electricityProduction, 0);
     cr_assert_eq(bc.waterProduction, 0);
     cr_assert_eq(bc.waterConsumption, 0);

@@ -7,12 +7,13 @@
 enum class BuildingType {
     House,
     SolarPanel,
-    WaterTank
+    WaterTank,
+    Unknown // Pour les bâtiments non définis
 };
 
 // Composant qui stocke les infos spécifiques à un bâtiment
 struct BuildingComponent {
-    BuildingType type = BuildingType::House; // Type du bâtiment
+    BuildingType type = BuildingType::Unknown; // Type du bâtiment
 
     int electricityProduction = 0; // Production d'électricité
     int electricityConsumption = 0; // Consommation d'électricité
@@ -20,7 +21,7 @@ struct BuildingComponent {
     int waterConsumption = 0;      // Consommation d'eau
 
     // Constructeur pratique
-    BuildingComponent(BuildingType type = BuildingType::House) : type(type) {
+    BuildingComponent(BuildingType type = BuildingType::Unknown) : type(type) {
         switch (type) {
             case BuildingType::House:
                 electricityConsumption = 1;
@@ -30,6 +31,9 @@ struct BuildingComponent {
                 break;
             case BuildingType::WaterTank:
                 waterProduction = 1;
+                break;
+            case BuildingType::Unknown:
+                // Pas de production/consommation par défaut
                 break;
         }
     }

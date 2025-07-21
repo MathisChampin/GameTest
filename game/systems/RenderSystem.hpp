@@ -12,27 +12,28 @@
 // Système qui dessine toutes les entités avec Position + Building + Selectable
 class RenderSystem : public ISystem {
     public:
-        // Initialise les références aux composants
-        void init(
-            const std::unordered_map<Entity, PositionComponent>& positions,
-            const std::unordered_map<Entity, BuildingComponent>& buildings,
-            const std::unordered_map<Entity, SelectableComponent>& selectables
-    )   ;
 
-        // Met à jour le rendu : dessine les entités
+        // Constructeur par défaut
+        RenderSystem(
+            const std::unordered_map<Entity, PositionComponent> &positions,
+            const std::unordered_map<Entity, BuildingComponent> &buildings,
+            const std::unordered_map<Entity, SelectableComponent> &selectables
+        ): positions(positions), buildings(buildings), selectables(selectables) {}
+
+        // Initialise le système avec les références aux composants
         void update(sf::RenderWindow& window);
-        
+
         // Fonction utilitaire pour construire un rectangle à partir des composants
         sf::RectangleShape buildRectangle(Entity entity) const;
-
-        //Fonction utilitaire pour obtenir la couleur d'un bâtiment en fonction de son état sélectionné ou survolé
+    
+        // Récupère la couleur à utiliser pour dessiner un bâtiment en fonction de son état
         sf::Color getColor(const BuildingComponent& building, const SelectableComponent& selectable) const;
 
-    private:
-        const std::unordered_map<Entity, PositionComponent>* positions;
-        const std::unordered_map<Entity, BuildingComponent>* buildings;
-        const std::unordered_map<Entity, SelectableComponent>* selectables;
-
+private:
+    const std::unordered_map<Entity, PositionComponent> &positions;
+    const std::unordered_map<Entity, BuildingComponent> &buildings;
+    const std::unordered_map<Entity, SelectableComponent> &selectables;
 };
+
 
 #endif // RENDERSYSTEM_HPP_

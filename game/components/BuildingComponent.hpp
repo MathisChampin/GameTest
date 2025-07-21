@@ -37,6 +37,23 @@ struct BuildingComponent {
                 break;
         }
     }
+
+    // Get pour les valeurs de production/consommation
+    int getElectricityConsumption() const {
+        return electricityConsumption;
+    }
+
+    int getElectricityProduction() const {
+        return electricityProduction;
+    }
+
+    int getWaterConsumption() const {
+        return waterConsumption;
+    }
+
+    int getWaterProduction() const {
+        return waterProduction;
+    }
 };
 
 #endif // BUILDINGCOMPONENT_HPP_
